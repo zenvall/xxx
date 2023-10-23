@@ -3,6 +3,8 @@ import datetime
 import time
 import pandas as pd
 import base64
+current_time = datetime.datetime.now().time()
+st.markdown(f"### Current Time: {current_time.strftime('%H:%M')}")
 
 # Define the event schedule
 event_schedule = [
