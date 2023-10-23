@@ -4,6 +4,11 @@ import time
 import pandas as pd
 import base64
 
+
+current_utc_time = datetime.datetime.utcnow()
+st.markdown(f"### Current Time (UTC): {current_utc_time.strftime('%H:%M')}")
+
+
 # Define the event schedule
 event_schedule = [
    
