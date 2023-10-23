@@ -3,8 +3,6 @@ import datetime
 import time
 import pandas as pd
 import base64
-current_time = datetime.datetime.now().time()
-st.markdown(f"### Current Time: {current_time.strftime('%H:%M')}")
 
 # Define the event schedule
 event_schedule = [
@@ -30,7 +28,6 @@ event_schedule = [
     {"start": "01:00", "end": "02:00", "event": "Twitch"},
     {"start": "02:00", "end": "06:00", "event": "Sleep"},
 ]
-
 def get_current_event(schedule, current_time):
     # Function to find the current event
     for event in schedule:
@@ -42,11 +39,20 @@ def get_current_event(schedule, current_time):
             return event
     return None
 
+def get_ist_time():
+    # Get the current UTC time
+    current_utc_time = datetime.datetime.utcnow()
+
+    # Calculate IST time (UTC+5:30)
+    ist_time = current_utc_time + datetime.timedelta(hours=5, minutes=30)
+
+    return ist_time.time()
+
 def main():
     st.title("Live Timetable")
 
-    current_time = datetime.datetime.now().time()
-    st.markdown(f"### Current Time: {current_time.strftime('%H:%M')}")
+    current_time = get_ist_time()  # Get current IST time
+    st.markdown(f"### Current Time (IST): {current_time.strftime('%H:%M')}")
 
     st.markdown("### Event Schedule")
 
